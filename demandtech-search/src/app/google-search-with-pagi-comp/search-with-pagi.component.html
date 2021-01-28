@@ -1,0 +1,48 @@
+<h4 style="color: rgb(233, 227, 218); font-weight: bolder;">Search With Pagination with Angular Material!</h4>
+
+<!-- <Label>Search Input</Label><input id="searchInput" type="text" [value]="searchInput" /> -->
+<!-- <Label>Search Input</Label><input  #searchInput  type="text" /> -->
+
+<section>
+<mat-form-field appearance="outline">
+  <mat-label onblur="ss">Search By Company Name</mat-label>
+<input matInput  [(ngModel)]="searchInput" type="text" placeholder="enter company name" >
+</mat-form-field>
+
+<p>
+  <button mat-raised-button color="primary" (click)="searchWithServerPagi()">Search</button>
+</p>
+
+</section>
+<div *ngIf="showPages">
+<mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+      </ng-container>
+      <!-- Progress Column -->
+    <ng-container matColumnDef="company">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Company </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.companyName}} </mat-cell>
+      </ng-container>
+      <!-- Color Column -->
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.sts}} </mat-cell>
+      </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+    </mat-table>
+
+</div>
+
+<mat-paginator [pageSize]="10" [length]="totalRecords" [pageSizeOptions]="[5, 10, 25, 100]" (page)="searchWithServerPagi()"></mat-paginator>

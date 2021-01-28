@@ -1,0 +1,17 @@
+<section>
+<mat-form-field appearance="outline">
+    <mat-label onblur="ss">Search With Http Get</mat-label>
+  <input matInput #searchGet (keyup)="search(searchGet.value)" type="text" placeholder="type key to search" >
+</mat-form-field>
+<p></p>
+<mat-form-field appearance="outline">
+    <mat-label onblur="ss">Search With Http Post</mat-label>
+  <input matInput #searchPost (keyup)="onSearchPost(searchPost.value)" type="text" placeholder="type key to search" >
+</mat-form-field>
+</section>
+<span></span>
+<ul>
+<li *ngFor="let s of searchList">
+    <span style="color:rgb(20, 153, 187)">{{s.companyName}} | {{s.name}}</span>
+</li>
+</ul>
