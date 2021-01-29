@@ -76,6 +76,8 @@ export class SearchWithPagiComponent implements OnInit {
     console.log('@inside searchWithServerPagi');    
     //this.searchInput = si;
     this.showPages = true;
+    console.log("this.paginator.pageSize :", this.paginator.pageSize);
+    console.log("this.paginator.pageIndex :", this.paginator.pageIndex);
 
     this.service.searchWithServerPagi(this.searchInput, this.paginator.pageSize, this.paginator.pageIndex).subscribe( (d: SearchBeanWrapper) => {
       this.dataSource.data = d.searchResult;
@@ -84,6 +86,7 @@ export class SearchWithPagiComponent implements OnInit {
 
     });
 
+   
     //this.totalRecords = 31;
     //this.dataSource.paginator.length = 31;
     console.log('this.totalRecords:' + this.totalRecords)
@@ -91,5 +94,9 @@ export class SearchWithPagiComponent implements OnInit {
     //console.log('this.dataSource.paginator.length:' + this.dataSource.pagin)
   }
 
+  searchBlur(){
+    console.log('on blur:');
+    this.paginator.pageIndex = 0;
+  }
   
 }
