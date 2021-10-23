@@ -56,6 +56,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
           }
         },
@@ -122,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "demandtech-search"
+  "defaultProject": "demandtech-search",
+  "cli": {
+    "analytics": "388f198c-3558-497c-8819-fec881842f51"
+  }
 }

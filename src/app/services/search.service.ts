@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { SearchBean } from './SearchBean';
 
 
@@ -9,9 +10,14 @@ import { SearchBean } from './SearchBean';
   providedIn: 'root'
 })
 export class SearchService {
+  public baseUrl: string = "http://agw.dev.search.acoustic.com/api/";
 
-  url = "http://localhost:8077/acoustic-search/search-with-get";
-  urlPost = "http://localhost:8077/acoustic-search/search-with-post";
+  //url = this.baseUrl + "search/search-with-get";
+  //urlPost = this.baseUrl + "search/search-with-post";
+  
+  urlPost = environment.apiUrl + "search/search-with-post";
+  url = environment.apiUrl + "search/search-with-get";
+
 
   router: Router;
   public searchList = [];
@@ -32,8 +38,9 @@ export class SearchService {
   }
 
   onSearch(val: string): Observable<any[]> {
-
     console.log('inside onSearch');
+    console.log('inside onSearch');
+    console.log('environment.apiUrl:' + environment.apiUrl);
 
     //this.searchList = ['abc', 'xyz'];
 
@@ -51,6 +58,8 @@ export class SearchService {
     console.log('inside onSearchPost');
 
     console.log('inside string:' + val);
+
+    console.log('environment.apiUrl:' + environment.apiUrl);
 
     return this.httpClient.post<any[]>(this.urlPost, { "name": val});
 
